@@ -1,0 +1,31 @@
+h2 {
+    position: relative;
+    font-size: 4vw;
+    color: transparent;
+    -webkit-text-stroke: .3vw #569bfd;
+}
+h2::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 0%;
+    height: 100%;
+    color: #fff;
+    -webkit-text-stroke: .0vw #383d52;
+    border-right: 2px solid #fff;
+    overflow: hidden;
+    animation: farid 6s linear infinite;
+}
+
+@keyframes farid {
+    0%,10%,100% {
+        width: 0;
+    }
+    30% {
+        width: 20%;
+    }
+    70%,90% {
+        width: 100%;
+    }
+}

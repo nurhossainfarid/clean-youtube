@@ -1,35 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Button, Container } from "@mui/material";
+import CssBaseline from "@mui/material/CssBaseline";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import usePlaylist from "./hooks/usePlaylist";
+import { useEffect } from "react";
+import Navbar from "./components/navbar/Navbar";
+import Home from "./components/home";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
+  const { playlists, getPlaylistById, error,loading } = usePlaylist();
+  useEffect(() => {
+		getPlaylistById('PL_XxuZqN0xVD0op-QDEgyXFA4fRPChvkl');
+	}, []);
+  console.log('Error:', error);
+  console.log('Loading', loading);
+  console.log(playlists);
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <BrowserRouter>
+      <CssBaseline />
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
+  );
+};
 
-export default App
+export default App;
